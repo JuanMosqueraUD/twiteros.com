@@ -16,11 +16,11 @@ def conexion(APIKey,APISecret,accessToken,accessTokenSecret):
 
     auth = tweepy.OAuthHandler(APIKey, APISecret)
     auth.set_access_token(accessToken, accessTokenSecret)
-    api= tweepy.API(auth) #pa k no se nos piffee el programa cuando ya no tengamos para obtener más data
+    api= tweepy.API(auth, wait_on_rate_limit=True) #pa k no se nos piffee el programa cuando ya no tengamos para obtener más data
     return api
 
 
 api=conexion(*getKeys())
 #probando a ver si sí hace la conexión bn
-data=api.get_user("vegetta777")
+data=api.get_user(screen_name="vegetta777")
 print(data)
