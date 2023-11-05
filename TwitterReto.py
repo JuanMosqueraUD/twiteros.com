@@ -2,6 +2,8 @@
 #pip install tweepy
 
 import tweepy
+import pandas as pd
+import json
 
 def getKeys():
     APIKey="K1KFRre4gcNHbSDuzjyjbYpkn"
@@ -21,6 +23,9 @@ def conexion(APIKey,APISecret,accessToken,accessTokenSecret):
 
 
 api=conexion(*getKeys())
-#probando a ver si sí hace la conexión bn
-data=api.get_user(screen_name="vegetta777")
-print(data)
+
+#client = tweepy.Client('AAAAAAAAAAAAAAAAAAAAAEneqgEAAAAAh1fYx4U38oXmstXpvWVNX9Ov4iY%3DEXix8mmOriaXshZsApRMRZk34QL9eeagpzJesOzeL0RXolBmmR')
+data=api.get_user(screen_name="GustavoBolivar")
+#data=api.get_user(screen_name="Daniel29468195")
+print (json.dumps(data._json,indent=2))
+
