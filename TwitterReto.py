@@ -4,7 +4,6 @@
 import tweepy
 import pandas as pd
 from sklearn import tree
-from sklearn.svm import SVC
 import json
 
 def getKeys():
