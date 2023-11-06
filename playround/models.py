@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class Candidato(models.Model):
+    nombre = models.CharField(max_length=100)
+    seguidores = models.IntegerField()
+    favoritos = models.IntegerField()
+    porcentaje_seguidores = models.FloatField()
