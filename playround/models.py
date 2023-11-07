@@ -5,3 +5,6 @@ class Candidato(models.Model):
     seguidores = models.IntegerField()
     favoritos = models.IntegerField()
     porcentaje_seguidores = models.FloatField()
+
+    def __str__(self):
+        return self.nombre
