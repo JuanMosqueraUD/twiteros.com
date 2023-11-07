@@ -7,7 +7,7 @@ from sklearn import tree
 import json
 
 from playround.models import Candidato
-from playround.models import Candidato
+from .models import Candidato
 
 def getKeys():
     APIKey="K1KFRre4gcNHbSDuzjyjbYpkn"
@@ -125,11 +125,13 @@ print(candidatos2019)
 
 candidatos2019.to_csv('candidatos2019.csv', index=False)
 """
-def crear_candidatos_desde_dataframe(df):
-    for _, row in df.iterrows():
+
+def crear_candidatos_desde_dataframe():
+    df = dataCandidatos()
+    for index, row in df.iterrows():
         Candidato.objects.create(
-            nombre=row['nombre'],
-            seguidores=row['seguidores'],
-            favoritos=row['favoritos'],
-            porcentaje_seguidores=row['porcentaje_seguidores']
+            nombre=index,
+            seguidores=row['Seguidores'],
+            favoritos=row['Favoritos'],
+            numero_listas=row['N°Listas']
         )
