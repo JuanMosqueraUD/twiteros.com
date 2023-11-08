@@ -127,6 +127,9 @@ candidatos2019.to_csv('candidatos2019.csv', index=False)
 """
 
 def crear_candidatos_desde_dataframe():
+    #Linea experimental:
+    Candidato.objects.all().delete() #Borra todos los candidatos de la base de datos antes de crear nuevos
+
     df = dataCandidatos()
     for index, row in df.iterrows():
         Candidato.objects.create(
