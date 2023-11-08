@@ -64,8 +64,8 @@ def arbolDecision(candidatos, candidatos2022):
         print(nombre, ":", resultado)
 
 
-print("RESULTADO DE DECISION TREE CLASSIFIER:\n")
-arbolDecision(abrirCandidatos(),dataCandidatos())
+#print("RESULTADO DE DECISION TREE CLASSIFIER:\n")
+#arbolDecision(abrirCandidatos(),dataCandidatos())
 
 
 """
