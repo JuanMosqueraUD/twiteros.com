@@ -1,14 +1,15 @@
 #Primero instalar Tweepy:
 #pip install tweepy
 
-import tweepy
+#import tweepy
 import pandas as pd
 from sklearn import tree
-import json
+#import json
 
 from playround.models import Candidato
 from .models import Candidato
 
+"""
 def getKeys():
     APIKey="K1KFRre4gcNHbSDuzjyjbYpkn"
     APISecret="a3WIfFaKKT6KutRyGNAKOmWPCKfhkCjlbAfeaY2H4znC2oLHn0"
@@ -39,6 +40,10 @@ def dataCandidatos():
 
     candidatos=pd.DataFrame([gustavoBolivar,carlosGalan,diegoMolano,jorgeRobledo,generalVargas,juanOviedo,rodrigoLara],columns=["Seguidores","Favoritos","N°Listas"],index=["Gustavo Bolivar","Carlos Galan","Diego Molano","Jorge Robledo","Jorge Luis Vargas","Juan Oviedo","Rodrigo Lara"])
     return candidatos
+"""
+def dataCandidatos():
+    candidatos=pd.read_csv("candidatos.csv")
+    return candidatos
 
 def mediaColumnas(candidatos):
     mediaSeguidores=round(candidatos["Seguidores"].mean(), 2)
@@ -47,9 +52,9 @@ def mediaColumnas(candidatos):
     return mediaSeguidores, mediaFavoritos, mediaListas
 
 def porcentajes(candidatos):
-    candidatos['Porcentaje de seguidores'] = round(candidatos['Seguidores'] / candidatos['Seguidores'].sum() * 100, 2)
-    candidatos['Porcentaje de favoritos'] = round(candidatos['Favoritos'] / candidatos['Favoritos'].sum() * 100, 2)
-    candidatos['Porcentaje de listas'] = round(candidatos['N°Listas'] / candidatos['N°Listas'].sum() * 100, 2)
+    candidatos['Porcentaje de seguidores'] = round(candidatos['Seguidores'] / candidatos['Seguidores'].sum(), 5)
+    candidatos['Porcentaje de favoritos'] = round(candidatos['Favoritos'] / candidatos['Favoritos'].sum(), 5)
+    candidatos['Porcentaje de listas'] = round(candidatos['N°Listas'] / candidatos['N°Listas'].sum(), 5)
     return candidatos
 
 def abrirCandidatos():
@@ -60,9 +65,8 @@ def arbolDecision(candidatos, candidatos2022):
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(candidatos.iloc[:,0:3], candidatos.iloc[:,3:4])
 
-    for nombre, resultado in zip(candidatos2022.index, clf.predict(candidatos2022)):
+    for nombre, resultado in zip(candidatos2022['Nombre'], clf.predict(candidatos2022.iloc[:,1:4])):
         print(nombre, ":", resultado)
-
 
 #print("RESULTADO DE DECISION TREE CLASSIFIER:\n")
 #arbolDecision(abrirCandidatos(),dataCandidatos())
@@ -124,17 +128,37 @@ candidatos2019=pd.DataFrame([claudiaLopez,carlosGalan,hollmanMorris,miguelUribe,
 print(candidatos2019)
 
 candidatos2019.to_csv('candidatos2019.csv', index=False)
+
+#función para crear un csv de lo k pulleaba el papi
+def crear_csv_candidatos():
+    gustavoBolivar=[1582670, 65284, 1533]
+    carlosGalan=[591749, 14894, 986]
+    diegoMolano=[160034, 13995, 425]
+    jorgeRobledo=[1270280, 9501, 1816]
+    generalVargas=[4468, 47, 8]
+    juanOviedo=[119655, 65125, 143]
+    rodrigoLara=[183225, 24506, 593]
+
+    candidatos=pd.DataFrame([gustavoBolivar,carlosGalan,diegoMolano,jorgeRobledo,generalVargas,juanOviedo,rodrigoLara],columns=["Seguidores","Favoritos","N°Listas"],index=["Gustavo Bolivar","Carlos Galan","Diego Molano","Jorge Robledo","Jorge Luis Vargas","Juan Oviedo","Rodrigo Lara"])
+    candidatos.to_csv('candidatos.csv', index=True, index_label='Nombre')
+
+crear_csv_candidatos()
+print(dataCandidatos())
 """
 
 def crear_candidatos_desde_dataframe():
     #Linea experimental:
     Candidato.objects.all().delete() #Borra todos los candidatos de la base de datos antes de crear nuevos
 
-    df = dataCandidatos()
+    #df = dataCandidatos()
+    df = porcentajes(dataCandidatos())
     for index, row in df.iterrows():
         Candidato.objects.create(
-            nombre=index,
+            nombre=row['Nombre'],
             seguidores=row['Seguidores'],
             favoritos=row['Favoritos'],
-            numero_listas=row['N°Listas']
+            numero_listas=row['N°Listas'],
+            p_seguidores=row['Porcentaje de seguidores'],
+            p_favoritos=row['Porcentaje de favoritos'],
+            p_listas=row['Porcentaje de listas']
         )
