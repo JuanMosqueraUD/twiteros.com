@@ -5,6 +5,8 @@ from playround.TwitterReto import *
 
 
 
+
+
 def datos(request):
-    crear_candidatos_desde_dataframe()
-    return render(request, 'index.html')
+    candidatos = Candidato.objects.all()
+    return render(request, 'index.html', {'candidatos': candidatos})

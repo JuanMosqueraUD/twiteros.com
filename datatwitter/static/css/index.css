@@ -29,6 +29,8 @@ body {
 }
 
 .containerFotos {
+    
+    margin-top: 80px;
     width: fit-content;
     margin: flex;
     background-color: #DED8CC;
@@ -49,6 +51,7 @@ body {
 }
 
 .containerLabels{
+    margin-right: 50px;
     width: flex;
     margin: flex;
     display: flex;
@@ -80,7 +83,8 @@ h6 {
     margin-bottom: 2px;
 }
 
-h3 {
+canvas {
+    margin-right: 60px;
     text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
     color: #FFFFFF;
     text-align: center;

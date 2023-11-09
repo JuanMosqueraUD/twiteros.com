@@ -1,5 +1,4 @@
 from django.db import models
-
 class Candidato(models.Model):
     nombre = models.CharField(max_length=100)
     seguidores = models.IntegerField()
@@ -9,5 +8,5 @@ class Candidato(models.Model):
     p_favoritos = models.FloatField()
     p_listas = models.FloatField()
 
-def __str__(self):
+def _str_(self):
     return self.nombre

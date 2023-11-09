@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link type = "text/css" href='{% static "css/index.css" %}' rel='stylesheet'/> <!- se importa el css ->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,52 +25,55 @@
                 {% endblock content %}
             </div>
             <div class="data">
-                <div class="containerLabels" id="bolivar">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>
+            {% for candidato in candidatos %}
+                <div class="containerLabels" id="{{ candidato.nombre|lower }}">
+                    <h6>Nombre: {{ candidato.nombre }}</h6>
+                    <h6>Seguidores: {{ candidato.seguidores }}</h6>
+                    <h6>Favoritos: {{ candidato.favoritos }}</h6>
+                    <h6>Listados: {{ candidato.numero_listas }}</h6>
                 </div>
-                <div class="containerLabels" id="galan">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>                    
-                </div>  
-                <div class="containerLabels" id="molano">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>                    
-                </div>
-                <div class="containerLabels" id="robledo">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>                    
-                </div>
-                <div class="containerLabels" id="vargas">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>                    
-                </div>
-                <div class="containerLabels" id="oviedo">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>                    
-                </div>
-                <div class="containerLabels" id="lara">
-                    <h6>Nombre:</h6>
-                    <h6>Seguidores:</h6>
-                    <h6>Favoritos:</h6>
-                    <h6>Listados:</h6>                    
-                </div>                                                                                                                                                            
+            {% endfor %}                                                                                                                                                   
             </div>
         </div>
         <div class="containerGrafica">
-            <h3>favor poner la grafica en este contenedor</h3>
+            <canvas id="myChart" width="700" height="700"></canvas>
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [{% for candidato in candidatos %}'{{ candidato.nombre }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+                        datasets: [{
+                            label: '% de Seguidores',
+                            data: [{% for candidato in candidatos %}{{ candidato.p_seguidores }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '% de Favoritos',
+                            data: [{% for candidato in candidatos %}{{ candidato.p_favoritos }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '% de Listados',
+                            data: [{% for candidato in candidatos %}{{ candidato.p_listas }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
         </div>
     </div>
     <script type="text/javascript" src='{% static "js/index.js" %}'></script> 
