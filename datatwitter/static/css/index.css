@@ -1,18 +1,35 @@
+@font-face {
+    font-family: 'Jost';
+    src: url('fonts/Jost-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('fonts/BebasNeue-Regular.ttf');
+}
+
 body {
-    background-color: #f0f0f0;
+    background-color: #DED8CC;
     font-family: Arial, sans-serif;
 }
 
 .container {
     width: 80%;
     margin: auto;
-    background-color: #fff;
+    background-color: #DED8CC;
     padding: 20px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 
 h1 {
-    color: #333;
+    font-family: 'Bebas Neue';
+    color: #49245E;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Jost';
+    color: #89734B;
     text-align: center;
 }
 
