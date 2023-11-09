@@ -19,20 +19,49 @@ body {
     align-content: space-between;
 }
 
-.containerFotos {
+.info {
     width: flex;
     margin: flex;
-    background-color: #DED8CC;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     padding: 20px;
+}
+
+.containerFotos {
+    width: fit-content;
+    margin: flex;
+    background-color: #DED8CC;
+    display:inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: max-content;
+}
+
+.data {
+    width: flex;
+    height: 100%;
+    margin: flex;
+    background-color: #DED8CC;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+.containerLabels{
+    width: flex;
+    margin: flex;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 7px;
+}
+
+
 .containerGrafica{
     width: flex;
     margin: flex;
-    padding: 20px;
+    padding: 50px;
     display: flex;
 }
 
@@ -43,10 +72,12 @@ h1 {
     text-align: center;
 }
 
-h2 {
+h6 {
     font-family: 'Jost';
     color: #89734B;
     text-align: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 h3 {
@@ -55,6 +86,7 @@ h3 {
     text-align: center;
 }
 
+
 .candidato {
     align-self: left;
     display: block;
@@ -62,6 +94,6 @@ h3 {
     margin-right: auto;
     margin-top: 3px;
     margin-bottom: 3px;
-    width: 5%; /* reduce the size to 60% to make it 40% smaller */
+    width: 9%; /* reduce the size to 60% to make it 40% smaller */
     border-radius: 20px;
 }
