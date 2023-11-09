@@ -158,7 +158,9 @@ def crear_candidatos_desde_dataframe():
             seguidores=row['Seguidores'],
             favoritos=row['Favoritos'],
             numero_listas=row['N°Listas'],
-            #p_seguidores=row['Porcentaje de seguidores'],
-            #p_favoritos=row['Porcentaje de favoritos'],
-            #p_listas=row['Porcentaje de listas']
+            p_seguidores=row['Porcentaje de seguidores'],
+            p_favoritos=row['Porcentaje de favoritos'],
+            p_listas=row['Porcentaje de listas']    
         )
+
+print(porcentajes(dataCandidatos()))

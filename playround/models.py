@@ -5,9 +5,9 @@ class Candidato(models.Model):
     seguidores = models.IntegerField()
     favoritos = models.IntegerField()
     numero_listas = models.IntegerField()
-    #p_seguidores = models.FloatField()
-    #p_favoritos = models.FloatField()
-    #p_listas = models.FloatField()
+    p_seguidores = models.FloatField()
+    p_favoritos = models.FloatField()
+    p_listas = models.FloatField()
 
 def __str__(self):
     return self.nombre
