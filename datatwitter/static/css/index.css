@@ -88,10 +88,10 @@ h3 {
 
 
 .candidato {
-    align-self: left;
+    align-self: center;
     display: block;
-    margin-left:auto;
-    margin-right: auto;
+    margin-left:20px;
+    margin-right: 20px;
     margin-top: 3px;
     margin-bottom: 3px;
     width: 9%; /* reduce the size to 60% to make it 40% smaller */
