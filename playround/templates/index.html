@@ -10,10 +10,20 @@
 <body>
     <h1>twiteros.com</h1>
     <h2>Galán Pirobo</h2>
-    <img class="bolivar" src="{% static "imagenes/bolivar.jpg" %}" alt="bolivar">
-    <div class="container">
-        {% block content %} {% endblock content %}
+    
+
+    <div class="containerFotos">
+        {% block content %}
+        <img class="candidato" src="{% static "imagenes/bolivar.jpg" %}" alt="bolivar">
+        <img class="candidato" src="{% static "imagenes/galan.webp" %}" alt="galan">
+        <img class="candidato" src="{% static "imagenes/molano.webp" %}" alt="molano">
+        <img class="candidato" src="{% static "imagenes/robledo.webp" %}" alt="robledo">
+        <img class="candidato" src="{% static "imagenes/vargas.webp" %}" alt="vargas">
+        <img class="candidato" src="{% static "imagenes/oviedo.webp" %}" alt="oviedo">
+        <img class="candidato" src="{% static "imagenes/lara.webp" %}" alt="lara">
+        {% endblock content %}
     </div>
+    <h3>miren esto tan bacano</h3>
     <script type="text/javascript" src='{% static "js/index.js" %}'></script> 
     <!- solo por probar, se importa el css y en el archivo index.js le digo que imprima en consola web que se ha cargado ->
 </body>
