@@ -146,16 +146,16 @@ crear_csv_candidatos()
 print(dataCandidatos())
 """
 
-def crear_candidatos_desde_dataframe():
+def crear_candidatos_desde_dataframe(): #esta función es para crear los candidatos desde el dataframe
     #Linea experimental:
-    Candidato.objects.all().delete() #Borra todos los candidatos de la base de datos antes de crear nuevos
+    Candidato.objects.all().delete() #esta linea es para borrar todos los candidatos que ya estaban en la base de datos
 
     #df = dataCandidatos()
-    df = porcentajes(dataCandidatos())
-    for index, row in df.iterrows():
-        Candidato.objects.create(
-            nombre=row['Nombre'],
-            seguidores=row['Seguidores'],
+    df = porcentajes(dataCandidatos()) #esta linea es para que se guarden los porcentajes en la base de datos
+    for index, row in df.iterrows(): #iterrows() es para iterar sobre las filas del dataframe
+        Candidato.objects.create( #se crea un objeto de la clase Candidato con los datos del dataframe
+            nombre=row['Nombre'],  
+            seguidores=row['Seguidores'],  
             favoritos=row['Favoritos'],
             numero_listas=row['N°Listas'],
             p_seguidores=row['Porcentaje de seguidores'],
@@ -163,4 +163,4 @@ def crear_candidatos_desde_dataframe():
             p_listas=row['Porcentaje de listas']    
         )
 
-print(porcentajes(dataCandidatos()))
+print(porcentajes(dataCandidatos())) #esta linea es para que se guarden los porcentajes en la base de datos

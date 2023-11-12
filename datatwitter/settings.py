@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'playround'
+    'playround' #se agrega la app playround para que se pueda acceder a los datos de la base de datos
     
 ]
 
@@ -125,7 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'datatwitter/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'datatwitter/static'),) #se agrega esta linea para que se pueda acceder a los archivos estaticos
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

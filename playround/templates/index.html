@@ -1,12 +1,12 @@
-{% load static %}
+{% load static %} <!- este es un tag de Django que carga los archivos estáticos, como CSS, JavaScript e imágenes. ->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!- se importa la libreria de chart.js ->
     <link type = "text/css" href='{% static "css/index.css" %}' rel='stylesheet'/> <!- se importa el css ->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Candidatos  {% endblock title %}  </title>
+    <title>{% block title %} Candidatos  {% endblock title %}  </title>   <!- se define el titulo de la pagina ->
 </head>
 <body>
     <h1>twiteros.com</h1>
@@ -14,7 +14,7 @@
     <div class="fondo">
         <div class="info">
             <div class="containerFotos">
-                {% block content %}
+                {% block content %}   <!- se define el contenido de la pagina ->
                 <img class="candidato" src="{% static "imagenes/bolivar.jpg" %}" alt="bolivar">
                 <img class="candidato" src="{% static "imagenes/galan.webp" %}" alt="galan">
                 <img class="candidato" src="{% static "imagenes/molano.webp" %}" alt="molano">
@@ -25,24 +25,33 @@
                 {% endblock content %}
             </div>
             <div class="data">
-            {% for candidato in candidatos %}
-                <div class="containerLabels" id="{{ candidato.nombre|lower }}">
-                    <h6>Nombre: {{ candidato.nombre }}</h6>
-                    <h6>Seguidores: {{ candidato.seguidores }}</h6>
+            {% for candidato in candidatos %}   <!- se define un for para recorrer la lista de candidatos ->
+                <div class="containerLabels" id="{{ candidato.nombre|lower }}"> <!- se define un id para cada candidato -> 
+                    <h6>Nombre: {{ candidato.nombre }}</h6>  <!- se imprimen los datos de cada candidato ->
+                    <h6>Seguidores: {{ candidato.seguidores }}</h6>   
                     <h6>Favoritos: {{ candidato.favoritos }}</h6>
                     <h6>Listados: {{ candidato.numero_listas }}</h6>
                 </div>
             {% endfor %}                                                                                                                                                   
             </div>
         </div>
-        <div class="containerGrafica">
-            <canvas id="myChart" width="700" height="700"></canvas>
+        <div class="containerGrafica"> <!- se define un contenedor para la grafica ->
+            <canvas id="myChart" width="700" height="700"></canvas> <!- se define el canvas de la grafica ->
+            <div id="controls"> <!- se define un contenedor para los botones ->
+                <button id="miBoton">Dato Mostrado</button> <!- se define un boton y su respectivo nombre para mostrar el dato ->
+                <select id="dataSelect"> <!- se define un select para seleccionar el dato ->
+                    <option value="all">Todos los datos</option> 
+                    <option value="% de Seguidores">% de Seguidores</option> 
+                    <option value="% de Favoritos">% de Favoritos</option>
+                    <option value="% de Listados">% de Listados</option>
+                </select>
+            </div>
             <script>
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
+                var ctx = document.getElementById('myChart').getContext('2d'); /* se define el contexto 2d para la grafica */
+                var myChart = new Chart(ctx, { 
+                    type: 'bar', /* se define el tipo de grafica */
                     data: {
-                        labels: [{% for candidato in candidatos %}'{{ candidato.nombre }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+                        labels: [{% for candidato in candidatos %}'{{ candidato.nombre }}'{% if not forloop.last %}, {% endif %}{% endfor %}], /* el for va moviendose entre candidatos y el dato especificado */
                         datasets: [{
                             label: '% de Seguidores',
                             data: [{% for candidato in candidatos %}{{ candidato.p_seguidores }}{% if not forloop.last %}, {% endif %}{% endfor %}],
@@ -65,18 +74,32 @@
                             borderWidth: 1
                         }]
                     },
-                    options: {
-                        scales: {
-                            y: {
+                    options: { 
+                        scales: { 
+                            y: { 
                                 beginAtZero: true
                             }
                         }
                     }
                 });
+            
+                document.getElementById('dataSelect').addEventListener('change', function() { /* se define un evento para el select */
+                    var selectedData = this.value; /* se define la variable selectedData para el valor del select */
+                    var datasets = myChart.data.datasets; /* se define la variable datasets para los datos de la grafica */
+            
+                    for (var i = 0; i < datasets.length; i++) { /* se recorre la lista de datos */
+                        if (selectedData === 'all' || datasets[i].label === selectedData) { /* se define una condicion para mostrar los datos */
+                            datasets[i].hidden = false; /* se define que los datos no esten ocultos */
+                        } else {
+                            datasets[i].hidden = true; /* se define que los datos esten ocultos */
+                        }
+                    }
+            
+                    myChart.update(); /* se actualiza la grafica */
+                });
             </script>
         </div>
     </div>
-    <script type="text/javascript" src='{% static "js/index.js" %}'></script> 
-    <!- solo por probar, se importa el css y en el archivo index.js le digo que imprima en consola web que se ha cargado ->
-</body>
+    <script type="text/javascript" src='{% static "js/index.js" %}'></script> <!- se importa el js ->
+</body> 
 </html>

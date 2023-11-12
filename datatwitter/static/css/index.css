@@ -1,4 +1,4 @@
-@font-face {
+@font-face {  /* codigo de las fuentes */
     font-family: 'Jost';
     src: url('fonts/Jost-Bold.ttf');
 }
@@ -8,18 +8,18 @@
     src: url('fonts/BebasNeue-Regular.ttf');
 }
 
-body {
+body { 
     background-color: #DED8CC;
     font-family: Arial, sans-serif;
 }
 
-.fondo {
+.fondo { 
     display: flex;
     justify-content: center;
     align-content: space-between;
 }
 
-.info {
+.info {  /* codigo de la informacion de los candidatos */
     width: flex;
     margin: flex;
     display: flex;
@@ -28,7 +28,7 @@ body {
     padding: 20px;
 }
 
-.containerFotos {
+.containerFotos {  
     
     width: fit-content;
     margin: flex;
@@ -39,7 +39,7 @@ body {
     height: max-content;
 }
 
-.data {
+.data {  /* codigo de los datos de los candidatos */
     width: flex;
     height: 100%;
     margin: flex;
@@ -49,7 +49,7 @@ body {
     justify-content: center;
 }
 
-.containerLabels{
+.containerLabels{  /* codigo de los labels de los candidatos */
     margin-right: 50px;
     width: flex;
     margin: flex;
@@ -60,21 +60,31 @@ body {
 }
 
 
-.containerGrafica{
+.containerGrafica{  /* codigo de la grafica */
     width: flex;
     margin: flex;
     padding: 50px;
     display: flex;
 }
 
+#controls {  /* codigo del contenedor para botones */
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-h1 {
+#miBoton {  /* codigo del boton */
+    width: 120px;
+    height: 30px;
+}
+
+h1 { /* codigo del titulo */
     font-family: 'Bebas Neue';
     color: #49245E;
     text-align: center;
 }
 
-h6 {
+h6 { /* codigo del subtitulo */
     font-family: 'Jost';
     color: #89734B;
     text-align: center;
@@ -83,7 +93,7 @@ h6 {
     font-size: 10px;
 }
 
-canvas {
+canvas { /* codigo de la grafica */
     margin-right: 60px;
     text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
     color: #FFFFFF;
@@ -91,7 +101,7 @@ canvas {
 }
 
 
-.candidato {
+.candidato { /* codigo de los candidatos */
     align-self: center;
     display: block;
     margin-left:20px;
