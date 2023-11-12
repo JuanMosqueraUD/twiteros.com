@@ -108,6 +108,6 @@ canvas { /* codigo de la grafica */
     margin-right: 20px;
     margin-top: 5px;
     margin-bottom: 5px;  
-    width: 21%; /* reduce the size to 60% to make it 40% smaller */
+    width: 21%; 
     border-radius: 20px;
 }
