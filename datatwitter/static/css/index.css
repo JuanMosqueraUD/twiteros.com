@@ -47,6 +47,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    justify-content:start;
 }
 
 .containerLabels{  /* codigo de los labels de los candidatos */
@@ -54,9 +55,8 @@ body {
     width: flex;
     margin: flex;
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    margin-bottom: 7px;
+    margin-bottom: 12px;
 }
 
 
@@ -65,6 +65,7 @@ body {
     margin: flex;
     padding: 50px;
     display: flex;
+    flex-direction: column;
 }
 
 #controls {  /* codigo del contenedor para botones */
@@ -73,9 +74,20 @@ body {
     margin-top: 20px;
 }
 
-#miBoton {  /* codigo del boton */
+#miBoton:disabled{  /* codigo del boton */
     width: 120px;
     height: 30px;
+    color: #89734B;
+    background-color: white;
+    font-family: 'Jost';
+    font-size: 14px;
+
+}
+
+#dataSelect{
+    font-family: 'Jost';
+    color: gray;
+    text-align: center;
 }
 
 h1 { /* codigo del titulo */
@@ -106,8 +118,8 @@ canvas { /* codigo de la grafica */
     display: block;
     margin-left:20px;
     margin-right: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;  
+    margin-top: 8px;
+    margin-bottom: 8px;  
     width: 21%; 
     border-radius: 20px;
 }
